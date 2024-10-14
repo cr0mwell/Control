@@ -12,12 +12,11 @@ set(CMAKE_CXX_FLAGS "${CXX_FLAGS} -Wl,-Bstatic -lcarla_client -lrpc -lboost_file
 set(sources main.cpp behavior_planner_FSM.cpp motion_planner.cpp cubic_spiral.cpp spiral_base.cpp integral.cpp spiral_equations.cpp cost_functions.cpp utils.cpp velocity_profile_generator.cpp pid_controller.cpp)
 
 # Use includes and libs from CARLA_SOURCE_DIR.
-set(CARLA_SOURCE_DIR /home/cromwell/carla)
+set(CARLA_SOURCE_DIR /opt/carla-source)
 set(CARLA_BUILD_DIR ${CARLA_SOURCE_DIR}/Build)
-set(CARLA_BUILD_BOOST_DIR ${CARLA_BUILD_DIR}/boost-1.80.0-c10-install)
-set(BOOST_ROOT ${CARLA_BUILD_BOOST_DIR}/lib/cmake/Boost-1.80.0)
-set(CARLA_BUILD_RECAST_DIR ${CARLA_BUILD_DIR}/recast-c10-install)
-set(CARLA_BUILD_RPCLIB_DIR ${CARLA_BUILD_DIR}/rpclib-v2.2.1_c5-c10-libstdcxx-install)
+set(CARLA_BUILD_BOOST_DIR ${CARLA_BUILD_DIR}/boost-1.72.0-c8-install)
+set(CARLA_BUILD_RECAST_DIR ${CARLA_BUILD_DIR}/recast-cdce4e-c8-install)
+set(CARLA_BUILD_RPCLIB_DIR ${CARLA_BUILD_DIR}/rpclib-v2.2.1_c2-c8-libstdcxx-install)
 
 set(CARLA_BUILD_LIBCARLA_DIR ${CARLA_BUILD_DIR}/libcarla-client-build.release/LibCarla/cmake/client)
 set(CARLA_BUILD_BOOST_LIB_DIR ${CARLA_BUILD_BOOST_DIR}/lib)
@@ -40,7 +39,6 @@ link_directories(${CARLA_BUILD_LIBCARLA_DIR})
 link_directories(${CARLA_BUILD_BOOST_LIB_DIR})
 link_directories(${CARLA_BUILD_RECAST_LIB_DIR})
 link_directories(${CARLA_BUILD_RPCLIB_LIB_DIR})
-link_directories(${CARLA_BUILD_RPCLIB_DIR}/include)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 

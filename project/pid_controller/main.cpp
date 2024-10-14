@@ -216,9 +216,9 @@ int main ()
 
   // Initialize pid steer and throttle
   PID pid_steer = PID();
-  pid_steer.Init(0.2, 0.005, 0.7, 1.2, -1.2);
+  pid_steer.Init(0.3, 0.0011, 0.7, 1.2, -1.2);
   PID pid_throttle = PID();
-  pid_throttle.Init(0.2, 0.001, 0.02, 1.0, -1.0);
+  pid_throttle.Init(0.2, 0.001, 0.06, 1.0, -1.0);
 
   
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
@@ -289,7 +289,7 @@ int main ()
           double min_distance = numeric_limits<double>::max();
           int min_index;
           for (size_t i=0; i<x_points.size(); i++){
-            double distance = sqrt(pow(x_position - x_points[i], 2) + pow(y_position - y_points[i], 2));
+            double distance = hypot(x_position - x_points[i], y_position - y_points[i]);
             if (distance < min_distance){
                 min_distance = distance;
                 min_index = i;
