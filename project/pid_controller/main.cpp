@@ -216,6 +216,11 @@ int main ()
 
   // Initialize pid steer and throttle
   PID pid_steer = PID();
+  //pid_steer.Init(0.15, 0.001, 0.8, 1.2, -1.2);
+  //pid_steer.Init(0.15, 0.001, 0.7, 1.2, -1.2);
+  //pid_steer.Init(0.15, 0.001, 0.6, 1.2, -1.2);
+  //pid_steer.Init(0.25, 0.001, 0.8, 1.2, -1.2);
+  //pid_steer.Init(0.27, 0.001, 0.7, 1.2, -1.2);
   pid_steer.Init(0.3, 0.0011, 0.7, 1.2, -1.2);
   PID pid_throttle = PID();
   pid_throttle.Init(0.2, 0.001, 0.06, 1.0, -1.0);
