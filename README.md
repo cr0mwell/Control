@@ -223,3 +223,30 @@ kill id
 ## Step 8. Check the Rubric and Submit
 
 Re-check the rubric in the classroom and ensure that your submission satisfies all rubric criteria to pass the project. Once you are confident, submit the project. 
+
+## Evaluation and conclusions
+
+In the current project a Proportional-Integral-Derivative (PID) controllers had been created for the steering and throttling.
+<img src="media/1_task.png"/>
+The idea is to reduce the cross track error (CTE) as much as possible and make the ego car trajectory close to the planned one.<br>
+The CTE for throttling is calculated by subtracting the velocity provided by the planner from the actual ego vehicle speed.<br>
+The CTE for the steering is an angle between the actual steer direction of ego car and the direction of the closest point of the trajectory provided by the path planner.
+In order to calculate it the closest point of the planner trajectory was found by calculating the Euclidean distance to every point and selecting the closest one.
+Next the angle between these points was calculated and finally subtracted from the actual steering angle 'yaw'.
+There are 3 components in PID:
+* P (Proportional parameter) - proportionally changes the cross track error. The car tends to overshoot if this is the only parameter used.
+* I (Integral parameter) - accumulates the past error information and adjusts it accordingly to reduce steady state error.
+* D (Derivative parameter) - uses the change rate of the cross track error. This allows to minimise the overshoot drastically.
+
+At each step the ego vehicle makes we calculate the CTE, update the error for each of PID components and finally calculate the overall error.
+Next PID controller can update the steering and throttling to take into account the error and reduce it in time.
+The following image shows the throttling CTE and actual throttling value that changes in time:
+<img src="media/throttle.jpg"/>
+Another image shows the same for the steering:
+<img src="media/steering.jpg"/>
+
+PID parameters could be tuned automatically using so-called twiddle algorithm. It iteratively runs the simulation one after another,
+checks the CTE gradient and updates each parameter respectively till the error is drastically reduced.
+
+The advantage of such a controller is that it can be tuned easily using twiddle algorithm.
+The slow convergence of the algorithm can be considered as a disadvantage.
